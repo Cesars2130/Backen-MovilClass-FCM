@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.enrollmentController = exports.joinClassUseCase = exports.getClassesByUserUseCase = exports.enrollmentRepository = void 0;
+const EnrollmentController_1 = require("./controllers/EnrollmentController");
+const MysqlEnrollmentRepository_1 = require("./MysqlEnrollmentRepository");
+const GetClassesByUserUseCase_1 = require("../aplication/GetClassesByUserUseCase");
+const JoinClassesUseCase_1 = require("../aplication/JoinClassesUseCase");
+exports.enrollmentRepository = new MysqlEnrollmentRepository_1.MysqlEnrollmentRepository();
+exports.getClassesByUserUseCase = new GetClassesByUserUseCase_1.GetClassesByUserUseCase(exports.enrollmentRepository);
+exports.joinClassUseCase = new JoinClassesUseCase_1.JoinClassUseCase(exports.enrollmentRepository);
+exports.enrollmentController = new EnrollmentController_1.EnrollmentController(exports.getClassesByUserUseCase, exports.joinClassUseCase);

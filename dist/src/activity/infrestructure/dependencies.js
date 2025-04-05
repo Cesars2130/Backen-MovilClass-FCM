@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.activityController = exports.getActivitiesByClassUseCase = exports.createActivityUseCase = exports.userRepository = exports.activityRepository = void 0;
+const ActivityController_1 = require("./controllers/ActivityController");
+const GetActivitiesByClassUseCase_1 = require("../aplication/GetActivitiesByClassUseCase");
+const CreateActivityUseCase_1 = require("../aplication/CreateActivityUseCase");
+const MysqlActivityRepository_1 = require("./MysqlActivityRepository");
+const MysqlUserRepository_1 = require("../../user/infrestucture/MysqlUserRepository");
+exports.activityRepository = new MysqlActivityRepository_1.MysqlActivityRepository();
+exports.userRepository = new MysqlUserRepository_1.MysqlUserRepository();
+exports.createActivityUseCase = new CreateActivityUseCase_1.CreateActivityUseCase(exports.activityRepository, exports.userRepository);
+exports.getActivitiesByClassUseCase = new GetActivitiesByClassUseCase_1.GetActivitiesByClassUseCase(exports.activityRepository);
+exports.activityController = new ActivityController_1.ActivityController(exports.createActivityUseCase, exports.getActivitiesByClassUseCase);

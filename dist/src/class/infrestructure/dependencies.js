@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createClassController = exports.getClassByIdController = exports.createClassUseCase = exports.getClassByIdUseCase = exports.mysqlUserRepository = exports.mysqlClassRepository = void 0;
+const GetClassByIdUseCase_1 = require("../aplication/GetClassByIdUseCase");
+const CreateClassUseCase_1 = require("../aplication/CreateClassUseCase");
+const MysqlClassRepository_1 = require("./MysqlClassRepository");
+const MysqlUserRepository_1 = require("../../user/infrestucture/MysqlUserRepository");
+const GetClassByCodeController_1 = require("./controllers/GetClassByCodeController");
+const CreateClassController_1 = require("./controllers/CreateClassController");
+exports.mysqlClassRepository = new MysqlClassRepository_1.MysqlClassRepository();
+exports.mysqlUserRepository = new MysqlUserRepository_1.MysqlUserRepository();
+exports.getClassByIdUseCase = new GetClassByIdUseCase_1.GetClassByIdUseCase(exports.mysqlClassRepository);
+exports.createClassUseCase = new CreateClassUseCase_1.CreateClassUseCase(exports.mysqlClassRepository);
+exports.getClassByIdController = new GetClassByCodeController_1.GetClassByIdController(exports.getClassByIdUseCase);
+exports.createClassController = new CreateClassController_1.CreateClassController(exports.createClassUseCase);
