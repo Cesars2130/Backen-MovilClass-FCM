@@ -34,7 +34,7 @@ class MysqlActivityRepository {
     }
     getActivitiesByClass(id_class) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sql = "SELECT * FROM Activities WHERE id_class = ?";
+            const sql = "SELECT * FROM activities WHERE id_class = ?";
             const params = [id_class];
             try {
                 const [result] = yield (0, mysql_1.query)(sql, params);

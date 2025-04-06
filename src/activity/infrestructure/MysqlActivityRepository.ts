@@ -22,7 +22,7 @@ export class MysqlActivityRepository implements ActivityRepository {
   }
 
   async getActivitiesByClass(id_class: number): Promise<Activity[] > {
-    const sql = "SELECT * FROM Activities WHERE id_class = ?";
+    const sql = "SELECT * FROM activities WHERE id_class = ?";
     const params: any[] = [id_class];
 
     try {

@@ -16,7 +16,7 @@ class MysqlEnrollmentRepository {
         return __awaiter(this, void 0, void 0, function* () {
             const sql = `
       SELECT c.id_class, c.class_name, c.class_code
-      FROM enrollments e
+      FROM enrollment e
       INNER JOIN classes c ON e.id_class = c.id_class
       WHERE e.id_user = ?`;
             try {
@@ -41,7 +41,7 @@ class MysqlEnrollmentRepository {
                 const id_class = parseInt(classResult[0][0].id_class);
                 console.log(id_user, id_class);
                 // Insertar inscripción
-                const sql = "INSERT INTO enrollments (id_user, id_class) VALUES (?, ?)";
+                const sql = "INSERT INTO enrollment (id_user, id_class) VALUES (?, ?)";
                 const params = [id_user, id_class];
                 const [result] = yield (0, mysql_1.query)(sql, params);
                 return result.affectedRows > 0;
