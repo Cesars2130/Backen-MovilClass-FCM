@@ -5,7 +5,7 @@ export class MysqlEnrollmentRepository implements EnrollmentRepository {
   async getClassesByUser(id_user: number): Promise<{ id_class: number, class_name: string, class_code: string }[]> {
     const sql = `
       SELECT c.id_class, c.class_name, c.class_code
-      FROM Enrollments e
+      FROM enrollments e
       INNER JOIN Classes c ON e.id_class = c.id_class
       WHERE e.id_user = ?`;
       
@@ -21,7 +21,7 @@ export class MysqlEnrollmentRepository implements EnrollmentRepository {
   async joinClass(id_user: number, class_code: string): Promise<boolean> {
     try {
       // Obtener ID de la clase por código
-      const classResult: any = await query("SELECT id_class FROM Classes WHERE class_code = ?", [class_code]);
+      const classResult: any = await query("SELECT id_class FROM classes WHERE class_code = ?", [class_code]);
       console.log(classResult,"sql")
       if (classResult.length === 0) {
         return false; // Clase no encontrada
